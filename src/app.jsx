@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import Login from './components/Login/Login'
+import Headers from './components/Headers/headers'
+
 import './app.css'
 import {
   signInWithGoogle,
   signInWithGitHub,
-  userChecked,
+  signOutCheck,
 } from './Service/Firebase'
 
 class App extends Component {
@@ -12,22 +14,25 @@ class App extends Component {
     LogInStatus: false,
   }
 
-  componentDidMount() {
-    const status = userChecked()
-    console.log(status)
-    this.setState({ LogInStatus: true })
+  handleSignOut = () => {
+    signOutCheck()
+    this.setState({ LogInStatus: false })
   }
 
   handleLogInGoogle = () => {
-    signInWithGoogle()
+    signInWithGoogle().then(() => {
+      this.setState({ LogInStatus: true })
+    })
   }
 
   handleGitHubLogin = () => {
     signInWithGitHub()
+    this.setState({ LogInStatus: true })
   }
   render() {
     return (
       <>
+        <Headers onSignOut={this.handleSignOut}></Headers>
         <Login
           onGoogleLogin={this.handleLogInGoogle}
           onGitHubLogIn={this.handleGitHubLogin}

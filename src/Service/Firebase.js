@@ -5,6 +5,7 @@ import {
   signInWithPopup,
   GithubAuthProvider,
   onAuthStateChanged,
+  signOut,
 } from 'firebase/auth'
 
 const firebaseConfig = {
@@ -44,8 +45,18 @@ export const signInWithGitHub = async () => {
 
 export const userChecked = () => {
   if (user) {
-    return user
+    return true
   } else {
     return false
   }
+}
+
+export const signOutCheck = () => {
+  signOut(auth)
+    .then(() => {
+      console.log('logged out')
+    })
+    .catch(error => {
+      console.log(error)
+    })
 }
