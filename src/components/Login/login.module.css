@@ -1,0 +1,26 @@
+@value makerBlack from '../../common/colors.css';
+@value makerWhite from '../../common/colors.css';
+@value makerDarkBlue from '../../common/colors.css';
+
+.login_container {
+  width: 35%;
+  margin: auto;
+  text-align: center;
+  padding: 0rem 0.5rem 1.2rem 0.5rem;
+  display: flex;
+  flex-direction: column;
+  background: makerWhite;
+}
+
+.loginbutton {
+  border-radius: 25px;
+  margin-bottom: 0.5em;
+  border: 2px solid makerDarkBlue;
+  background-color: makerWhite;
+  padding: 7px 0px;
+  transition: transform 250ms ease-in;
+}
+
+.loginbutton:hover {
+  transform: scale(1.01);
+}

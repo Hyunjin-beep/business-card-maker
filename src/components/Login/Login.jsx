@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import styles from './login.module.css'
 
 class Login extends Component {
   handleGoogleLogin = () => {
@@ -10,10 +11,15 @@ class Login extends Component {
   }
   render() {
     return (
-      <>
-        <button onClick={this.handleGoogleLogin}>Google</button>
-        <button onClick={this.handleGitHubLogin}>GitHub</button>
-      </>
+      <div className={styles.login_container}>
+        <h2 className={styles.header}>Login</h2>
+        <button className={styles.loginbutton} onClick={this.handleGoogleLogin}>
+          Google
+        </button>
+        <button className={styles.loginbutton} onClick={this.handleGitHubLogin}>
+          GitHub
+        </button>
+      </div>
     )
   }
 }

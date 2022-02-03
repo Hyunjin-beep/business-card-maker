@@ -8,6 +8,7 @@ import {
   signInWithGitHub,
   signOutCheck,
 } from './Service/Firebase'
+import Footer from './components/Footer/footer'
 
 class App extends Component {
   state = {
@@ -32,11 +33,15 @@ class App extends Component {
   render() {
     return (
       <>
-        <Headers onSignOut={this.handleSignOut}></Headers>
+        <Headers
+          onSignOut={this.handleSignOut}
+          display={this.state.LogInStatus ? 'block' : 'none'}
+        ></Headers>
         <Login
           onGoogleLogin={this.handleLogInGoogle}
           onGitHubLogIn={this.handleGitHubLogin}
         ></Login>
+        <Footer></Footer>
       </>
     )
   }
