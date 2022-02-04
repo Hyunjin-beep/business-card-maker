@@ -3,12 +3,15 @@ import Login from './components/Login/Login'
 import Headers from './components/Headers/headers'
 
 import './app.css'
+
+import Footer from './components/Footer/footer'
+import Form from './components/Form/form'
 import {
   signInWithGoogle,
   signInWithGitHub,
   signOutCheck,
 } from './Service/Firebase'
-import Footer from './components/Footer/footer'
+import Form_header from './components/Form/form_header'
 
 class App extends Component {
   state = {
@@ -35,13 +38,22 @@ class App extends Component {
       <>
         <Headers
           onSignOut={this.handleSignOut}
-          display={this.state.LogInStatus ? 'block' : 'none'}
+          display={this.state.LogInStatus ? true : 'false'}
         ></Headers>
-        <Login
-          onGoogleLogin={this.handleLogInGoogle}
-          onGitHubLogIn={this.handleGitHubLogin}
-        ></Login>
-        <Footer></Footer>
+
+        {this.state.LogInStatus ? (
+          <>
+            <Form_header></Form_header>
+            <Form></Form>
+          </>
+        ) : (
+          <Login
+            onGoogleLogin={this.handleLogInGoogle}
+            onGitHubLogIn={this.handleGitHubLogin}
+          ></Login>
+        )}
+
+        <Footer display={this.state.LogInStatus ? true : 'false'}></Footer>
       </>
     )
   }

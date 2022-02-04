@@ -5,7 +5,13 @@ class Footer extends Component {
   render() {
     return (
       <>
-        <footer className={styles.footer}>
+        <footer
+          className={
+            this.props.display === true
+              ? styles.container_loggedin
+              : styles.container
+          }
+        >
           <p className={styles.title}>Code Your Dream</p>
         </footer>
       </>

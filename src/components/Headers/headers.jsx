@@ -6,18 +6,26 @@ class Headers extends Component {
     this.props.onSignOut()
   }
   render() {
-    const style = this.props.display === 'none' ? 'none' : 'inline'
     return (
-      <div className={styles.header_container}>
-        <div className={styles.header_logo}>
-          <img src="../public/logo.png" alt="" className={styles.header_img} />
-          <h2 className={styles.header_title}>Business Card Maker</h2>
+      <div
+        className={
+          this.props.display === true
+            ? styles.container_loggedin
+            : styles.container
+        }
+      >
+        <div className={styles.logo}>
+          <img src="../public/logo.png" alt="" className={styles.img} />
+          <h2 className={styles.title}>Business Card Maker</h2>
         </div>
 
         <button
-          className={`${styles.logoutButton}`}
+          className={
+            this.props.display === true
+              ? styles.logoutButton
+              : styles.hiddenButton
+          }
           onClick={this.handleSignOut}
-          style={{ display: style }}
         >
           Log Out
         </button>

@@ -1,14 +1,19 @@
 @value makerDarkBlue from '../../common/colors.css';
 @value makerWhite from '../../common/colors.css';
 
-.footer {
+.container {
   width: 35%;
   margin: auto;
 
   text-align: center;
-  border: 1px solid black;
-  padding: 0rem 0.4rem;
+  padding: 0.4rem 0.4rem;
   background-color: makerDarkBlue;
+}
+
+.container_loggedin {
+  padding: 0.3rem 0.4rem;
+  background-color: makerDarkBlue;
+  text-align: center;
 }
 
 .title {

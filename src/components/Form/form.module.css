@@ -1,0 +1,9 @@
+@value makerDarkBlue from '../../common/colors.css';
+@value makerBlack from '../../common/colors.css';
+@value makerWhite from '../../common/colors.css';
+
+.header {
+  color: makerDarkBlue;
+  width: 50%;
+  text-align: center;
+}
