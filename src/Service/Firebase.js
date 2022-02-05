@@ -1,4 +1,5 @@
 import { initializeApp } from 'firebase/app'
+import { getDatabase } from 'firebase/database'
 import {
   getAuth,
   GoogleAuthProvider,
@@ -20,7 +21,8 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig)
 export const auth = getAuth(app)
-const user = auth.currentUser
+export const db = getDatabase(app)
+export const user = auth.currentUser
 
 const googleProvider = new GoogleAuthProvider()
 const gitHubProvider = new GithubAuthProvider()

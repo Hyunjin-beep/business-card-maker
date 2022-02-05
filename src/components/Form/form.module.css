@@ -1,9 +1,86 @@
 @value makerDarkBlue from '../../common/colors.css';
 @value makerBlack from '../../common/colors.css';
 @value makerWhite from '../../common/colors.css';
+@value makerLightGrey from '../../common/colors.css';
 
 .header {
   color: makerDarkBlue;
   width: 50%;
   text-align: center;
+}
+
+.container {
+  border: 1px solid makerBlack;
+  width: 50%;
+  padding: 0.2em 1rem;
+}
+
+.nameField,
+.companyField {
+  width: 33%;
+  padding: 4px 10px;
+  line-height: 4px;
+}
+
+.themeField {
+  width: 34%;
+  padding: 4px 10px;
+  line-height: 4px;
+}
+
+.positionField,
+.emailField {
+  width: 50%;
+  padding: 4px 10px;
+  line-height: 4px;
+}
+
+.introField {
+  width: 100%;
+  padding: 4px 10px;
+
+  resize: none;
+}
+
+.thridLine {
+  margin: 0;
+  padding: 0;
+}
+
+.imgBtn,
+.addBtn {
+  width: 50%;
+
+  border: none;
+  outline: none;
+  font-weight: bolder;
+  transition: transform 250ms ease-in;
+}
+
+.imgBtn:hover,
+.addBtn:hover {
+  transform: scale(1.01);
+}
+
+.imgBtn {
+  background-color: makerLightGrey;
+  color: makerBlack;
+  padding: 4px 10px;
+}
+
+.imgBtn::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+.imgBtn::before {
+  border: none;
+  outline: none;
+
+  cursor: pointer;
+}
+
+.addBtn {
+  background-color: makerDarkBlue;
+  color: makerWhite;
+  padding: 7px 10px;
 }

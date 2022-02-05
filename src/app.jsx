@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import Login from './components/Login/Login'
 import Headers from './components/Headers/headers'
-
+import Form_header from './components/Form/form_header'
 import './app.css'
+import Aixos from 'axios'
 
 import Footer from './components/Footer/footer'
 import Form from './components/Form/form'
@@ -10,21 +11,29 @@ import {
   signInWithGoogle,
   signInWithGitHub,
   signOutCheck,
+  db,
+  auth,
 } from './Service/Firebase'
-import Form_header from './components/Form/form_header'
+
+import { set, ref } from 'firebase/database'
 
 class App extends Component {
   state = {
     LogInStatus: false,
+    img: '',
+    userDetail: [],
   }
 
   handleSignOut = () => {
     signOutCheck()
+
     this.setState({ LogInStatus: false })
   }
 
   handleLogInGoogle = () => {
-    signInWithGoogle().then(() => {
+    signInWithGoogle().then(result => {
+      console.log(result.user)
+      this.setState({ userDetail: result.user })
       this.setState({ LogInStatus: true })
     })
   }
@@ -32,6 +41,35 @@ class App extends Component {
   handleGitHubLogin = () => {
     signInWithGitHub()
     this.setState({ LogInStatus: true })
+  }
+
+  saveInput = (userName, company, theme, position, email, intro) => {
+    console.log(userName, company, theme, position, email, intro)
+    const userID = this.state.userDetail.uid
+    set(ref(db, `users/${userID}`), {
+      userName,
+      company,
+      theme,
+      position,
+      email,
+      intro,
+    })
+
+    const formData = new FormData()
+    const file = this.state.img
+    formData.append('file', file)
+    formData.append('upload_preset', 'nq26orwa')
+
+    Aixos.post(
+      'https://api.cloudinary.com/v1_1/djhlpuabi/image/upload',
+      formData
+    ).then(response => {
+      console.log(response)
+    })
+  }
+
+  saveImg = file => {
+    this.setState({ img: file })
   }
   render() {
     return (
@@ -44,7 +82,11 @@ class App extends Component {
         {this.state.LogInStatus ? (
           <>
             <Form_header></Form_header>
-            <Form></Form>
+            <Form
+              userDetail={this.state.userDetail}
+              onSaveInput={this.saveInput}
+              onImg={this.saveImg}
+            ></Form>
           </>
         ) : (
           <Login
