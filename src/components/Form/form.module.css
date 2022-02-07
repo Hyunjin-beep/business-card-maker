@@ -5,13 +5,12 @@
 
 .header {
   color: makerDarkBlue;
-  width: 50%;
+
   text-align: center;
 }
 
 .container {
-  border: 1px solid makerBlack;
-  width: 50%;
+  margin: 0 1rem 0 1rem;
   padding: 0.2em 1rem;
 }
 

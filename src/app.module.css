@@ -1,0 +1,21 @@
+@value makerLightGrey from './common/colors.css';
+
+* {
+  box-sizing: border-box;
+}
+
+.container {
+  margin: auto;
+
+  display: flex;
+  /* display: flex; */
+  /* justify-content: space-between; */
+}
+
+.childContainer {
+  width: 50%;
+}
+
+.childContainer:first-child {
+  border-right: 1px solid makerLightGrey;
+}

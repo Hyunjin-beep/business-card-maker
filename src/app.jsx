@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Login from './components/Login/Login'
 import Headers from './components/Headers/headers'
 import Form_header from './components/Form/form_header'
-import './app.css'
+import styles from './app.module.css'
 import Aixos from 'axios'
 
 import Footer from './components/Footer/footer'
@@ -12,16 +12,18 @@ import {
   signInWithGitHub,
   signOutCheck,
   db,
-  auth,
 } from './Service/Firebase'
 
-import { set, ref } from 'firebase/database'
+import { set, ref, onValue } from 'firebase/database'
+import Card from './components/Card/card'
+import Card_header from './components/Card/card_header'
 
 class App extends Component {
   state = {
     LogInStatus: false,
     img: '',
     userDetail: [],
+    userData: [],
   }
 
   handleSignOut = () => {
@@ -32,29 +34,21 @@ class App extends Component {
 
   handleLogInGoogle = () => {
     signInWithGoogle().then(result => {
-      console.log(result.user)
+      this.setState({ userDetail: result.user })
+      this.setState({ LogInStatus: true })
+      this.retrieveUserData(result.user.uid)
+    })
+  }
+
+  handleGitHubLogin = () => {
+    signInWithGitHub().then(result => {
       this.setState({ userDetail: result.user })
       this.setState({ LogInStatus: true })
     })
   }
 
-  handleGitHubLogin = () => {
-    signInWithGitHub()
-    this.setState({ LogInStatus: true })
-  }
-
   saveInput = (userName, company, theme, position, email, intro) => {
-    console.log(userName, company, theme, position, email, intro)
     const userID = this.state.userDetail.uid
-    set(ref(db, `users/${userID}`), {
-      userName,
-      company,
-      theme,
-      position,
-      email,
-      intro,
-    })
-
     const formData = new FormData()
     const file = this.state.img
     formData.append('file', file)
@@ -64,12 +58,30 @@ class App extends Component {
       'https://api.cloudinary.com/v1_1/djhlpuabi/image/upload',
       formData
     ).then(response => {
-      console.log(response)
+      set(ref(db, `users/${userID}`), {
+        userName,
+        company,
+        theme,
+        position,
+        email,
+        intro,
+        image_url: response.data.secure_url,
+      })
     })
   }
 
   saveImg = file => {
     this.setState({ img: file })
+  }
+
+  retrieveUserData = userID => {
+    const userDataRef = ref(db, `users/${userID}`)
+
+    onValue(userDataRef, snapshot => {
+      const data = snapshot.val()
+
+      this.setState({ userData: data })
+    })
   }
   render() {
     return (
@@ -80,14 +92,22 @@ class App extends Component {
         ></Headers>
 
         {this.state.LogInStatus ? (
-          <>
-            <Form_header></Form_header>
-            <Form
-              userDetail={this.state.userDetail}
-              onSaveInput={this.saveInput}
-              onImg={this.saveImg}
-            ></Form>
-          </>
+          <div className={styles.container}>
+            <div className={styles.childContainer}>
+              <Form_header></Form_header>
+              <Form
+                userData={this.state.userData}
+                userDetail={this.state.userDetail}
+                onSaveInput={this.saveInput}
+                onImg={this.saveImg}
+              ></Form>
+            </div>
+
+            <div className={styles.childContainer}>
+              <Card_header></Card_header>
+              <Card userData={this.state.userData}></Card>
+            </div>
+          </div>
         ) : (
           <Login
             onGoogleLogin={this.handleLogInGoogle}

@@ -26,13 +26,6 @@ class Form extends Component {
       enteredEmail,
       enteredIntro
     )
-
-    // this.name.current.value = ''
-    // this.company.current.value = ''
-    // this.theme.current.value = ''
-    // this.position.current.value = ''
-    // this.email.current.value = ''
-    // this.intro.current.value = ''
   }
 
   hanldeImg = event => {
@@ -40,6 +33,7 @@ class Form extends Component {
   }
 
   render() {
+    const userData = this.props.userData
     return (
       <>
         <div className={styles.container}>
@@ -47,16 +41,23 @@ class Form extends Component {
             <input
               type="text"
               placeholder="John Smith"
+              defaultValue={userData.userName}
               className={styles.nameField}
               ref={this.name}
             />
             <input
               type="text"
               placeholder="Apple"
+              defaultValue={userData.company}
               className={styles.companyField}
               ref={this.company}
             />
-            <select name="Theme" className={styles.themeField} ref={this.theme}>
+            <select
+              name="Theme"
+              className={styles.themeField}
+              defaultValue={userData.theme}
+              ref={this.theme}
+            >
               <option value="Dark">Dark</option>
               <option value="Light">Light</option>
             </select>
@@ -67,12 +68,14 @@ class Form extends Component {
               type="text"
               placeholder="Software Developer"
               className={styles.positionField}
+              defaultValue={userData.position}
               ref={this.position}
             />
             <input
               type="email"
               placeholder={this.props.userDetail.email}
               className={styles.emailField}
+              defaultValue={userData.email}
               ref={this.email}
             />
           </div>
@@ -83,6 +86,7 @@ class Form extends Component {
               row="2"
               placeholder="I love Coding"
               className={styles.introField}
+              defaultValue={userData.intro}
               ref={this.intro}
             />
           </div>
