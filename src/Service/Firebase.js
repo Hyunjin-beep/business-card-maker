@@ -1,13 +1,6 @@
 import { initializeApp } from 'firebase/app'
 import { getDatabase } from 'firebase/database'
-import {
-  getAuth,
-  GoogleAuthProvider,
-  signInWithPopup,
-  GithubAuthProvider,
-  onAuthStateChanged,
-  signOut,
-} from 'firebase/auth'
+import { getAuth } from 'firebase/auth'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBK4uQrAYefKFLWtBwelLvE1vI29Mzby3w',
@@ -24,26 +17,26 @@ export const auth = getAuth(app)
 export const db = getDatabase(app)
 export const user = auth.currentUser
 
-const googleProvider = new GoogleAuthProvider()
-const gitHubProvider = new GithubAuthProvider()
+// const googleProvider = new GoogleAuthProvider()
+// const gitHubProvider = new GithubAuthProvider()
 
-export const signInWithGoogle = async () => {
-  try {
-    const result = await signInWithPopup(auth, googleProvider)
-    return result
-  } catch (error) {
-    return console.log(error)
-  }
-}
+// export const signInWithGoogle = async () => {
+//   try {
+//     const result = await signInWithPopup(auth, googleProvider)
+//     return result
+//   } catch (error) {
+//     return console.log(error)
+//   }
+// }
 
-export const signInWithGitHub = async () => {
-  try {
-    const result = await signInWithPopup(auth, gitHubProvider)
-    return result
-  } catch (error) {
-    return console.log(error)
-  }
-}
+// export const signInWithGitHub = async () => {
+//   try {
+//     const result = await signInWithPopup(auth, gitHubProvider)
+//     return result
+//   } catch (error) {
+//     return console.log(error)
+//   }
+// }
 
 export const userChecked = () => {
   if (user) {
@@ -53,12 +46,12 @@ export const userChecked = () => {
   }
 }
 
-export const signOutCheck = () => {
-  signOut(auth)
-    .then(() => {
-      console.log('logged out')
-    })
-    .catch(error => {
-      console.log(error)
-    })
-}
+// export const signOutCheck = () => {
+//   signOut(auth)
+//     .then(() => {
+//       console.log('logged out')
+//     })
+//     .catch(error => {
+//       console.log(error)
+//     })
+// }

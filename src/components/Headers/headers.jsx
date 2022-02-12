@@ -11,7 +11,7 @@ class Headers extends Component {
     return (
       <div
         className={
-          this.props.display === true
+          this.props.loginStatus === true
             ? styles.container_loggedin
             : styles.container
         }
@@ -23,7 +23,7 @@ class Headers extends Component {
 
         <button
           className={
-            this.props.display === true
+            this.props.loginStatus === true
               ? styles.logoutButton
               : styles.hiddenButton
           }
