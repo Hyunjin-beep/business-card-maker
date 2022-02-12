@@ -2,21 +2,19 @@ import React, { Component } from 'react'
 import styles from './login.module.css'
 
 class Login extends Component {
-  handleGoogleLogin = () => {
-    this.props.onGoogleLogin()
+  handleLogin = event => {
+    console.log(event.currentTarget.textContent)
+    this.props.onHandleLogin(event.currentTarget.textContent)
   }
 
-  handleGitHubLogin = () => {
-    this.props.onGitHubLogIn()
-  }
   render() {
     return (
       <div className={styles.login_container}>
         <h2 className={styles.header}>Login</h2>
-        <button className={styles.loginbutton} onClick={this.handleGoogleLogin}>
+        <button className={styles.loginbutton} onClick={this.handleLogin}>
           Google
         </button>
-        <button className={styles.loginbutton} onClick={this.handleGitHubLogin}>
+        <button className={styles.loginbutton} onClick={this.handleLogin}>
           GitHub
         </button>
       </div>

@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import styles from './header.module.css'
+import logo from '../public/logo.png'
 
 class Headers extends Component {
   handleSignOut = () => {
     this.props.onSignOut()
   }
+
   render() {
     return (
       <div
@@ -15,7 +17,7 @@ class Headers extends Component {
         }
       >
         <div className={styles.logo}>
-          <img src="../public/logo.png" alt="" className={styles.img} />
+          <img src={logo} alt="" className={styles.img} />
           <h2 className={styles.title}>Business Card Maker</h2>
         </div>
 

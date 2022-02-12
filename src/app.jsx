@@ -26,25 +26,23 @@ class App extends Component {
     userData: [],
   }
 
-  handleSignOut = () => {
-    signOutCheck()
-
-    this.setState({ LogInStatus: false })
-  }
-
-  handleLogInGoogle = () => {
-    signInWithGoogle().then(result => {
+  handleLogin = providerName => {
+    this.props.authService.loginInAuth(providerName).then(result => {
       this.setState({ userDetail: result.user })
       this.setState({ LogInStatus: true })
       this.retrieveUserData(result.user.uid)
     })
   }
 
-  handleGitHubLogin = () => {
-    signInWithGitHub().then(result => {
-      this.setState({ userDetail: result.user })
-      this.setState({ LogInStatus: true })
-    })
+  handleSignOut = () => {
+    this.props.authService.logOutInAuth()
+
+    this.setState({ LogInStatus: false })
+  }
+
+  componentDidMount() {
+    // when user had logged in, go to maker page
+    this.props.authService.onAuthState()
   }
 
   saveInput = (userName, company, theme, position, email, intro) => {
@@ -110,8 +108,8 @@ class App extends Component {
           </div>
         ) : (
           <Login
-            onGoogleLogin={this.handleLogInGoogle}
-            onGitHubLogIn={this.handleGitHubLogin}
+            onHandleLogin={this.handleLogin}
+            onHandleLogin={this.handleLogin}
           ></Login>
         )}
 
