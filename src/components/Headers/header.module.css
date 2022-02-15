@@ -15,7 +15,7 @@
   border: 1px solid makerBlack;
   display: flex;
   justify-content: space-evenly;
-
+  width: 100%;
   margin: 0;
   padding: 0rem 0.4rem 1.2rem 0.4rem;
   background-color: makerDarkBlue;

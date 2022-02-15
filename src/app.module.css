@@ -4,18 +4,11 @@
   box-sizing: border-box;
 }
 
-.container {
-  margin: auto;
+.app {
+  width: 100%;
 
   display: flex;
-  /* display: flex; */
-  /* justify-content: space-between; */
-}
-
-.childContainer {
-  width: 50%;
-}
-
-.childContainer:first-child {
-  border-right: 1px solid makerLightGrey;
+  justify-content: center;
+  align-items: center;
+  background-color: makerGrey;
 }

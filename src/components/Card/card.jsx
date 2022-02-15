@@ -4,22 +4,21 @@ import logo from '../public/logo.png'
 
 class Card extends Component {
   render() {
-    const userData = this.props.userData
+    const { name, company, theme, title, email, message, fileName, fileURL } =
+      this.props.card
     return (
-      <div className={styles.container}>
-        <div className={styles.imgContainer}>
-          <img src={userData.image_url} alt="" className={styles.img} />
-        </div>
+      <li className={styles.container}>
+        <img src="" alt="" className={styles.img} />
 
         <div className={styles.metadata}>
-          <h2 className={styles.name}>{userData.userName}</h2>
-          <p className={styles.company}>{userData.company}</p>
+          <h2 className={styles.name}>{name}</h2>
+          <p className={styles.company}>{company}</p>
           <div className={styles.divider}></div>
-          <p className={styles.position}>{userData.position}</p>
-          <p className={styles.email}>{userData.email}</p>
-          <p className={styles.intro}>{userData.intro}</p>
+          <p className={styles.position}>{title}</p>
+          <p className={styles.email}>{email}</p>
+          <p className={styles.intro}>{message}</p>
         </div>
-      </div>
+      </li>
     )
   }
 }
