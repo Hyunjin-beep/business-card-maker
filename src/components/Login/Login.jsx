@@ -7,6 +7,7 @@ import styles from './login.module.css'
 class Login extends Component {
   state = {
     uid: '',
+    loginStatus: false,
   }
   // useNagivate를 찾아야함
   handleLogin = event => {
@@ -17,6 +18,7 @@ class Login extends Component {
 
       // this.retrieveUserData(result.user.uid)
       console.log(result)
+      this.setState({ loginStatus: true })
       this.setState({ uid: result.user.uid })
     })
   }
@@ -35,7 +37,7 @@ class Login extends Component {
   render() {
     return (
       <section className={styles.container}>
-        <Headers></Headers>
+        <Headers loginStatus={this.state.loginStatus}></Headers>
         <div className={styles.login_container}>
           <h2 className={styles.header}>Login</h2>
           <button className={styles.loginbutton} onClick={this.handleLogin}>
@@ -45,7 +47,7 @@ class Login extends Component {
             GitHub
           </button>
         </div>
-        <Footer></Footer>
+        <Footer loginStatus={this.state.loginStatus}></Footer>
       </section>
     )
   }

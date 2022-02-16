@@ -3,9 +3,8 @@
 @value makerWhite from '../../common/colors.css';
 
 .container {
-  width: 35%;
-  margin: auto;
-  margin-top: 17px;
+  width: 100%;
+
   text-align: center;
   padding: 0rem 0.4rem 1.2rem 0.4rem;
   background-color: makerDarkBlue;
@@ -34,6 +33,17 @@
   outline: none;
   border: none;
   transition: transform 250ms ease-in;
+
+  /* position: absolute;
+  right: 3em;
+  top: 1em;
+  padding: 0.8em;
+  border-radius: 20%;
+  background-color: makerBlack;
+  color: makerWhite;
+  outline: 0;
+  border: 0;
+  cursor: pointer; */
 }
 
 .logoutButton:hover {

@@ -2,7 +2,6 @@
 @value makerWhite from '../../common/colors.css';
 
 .container {
-  width: 35%;
   margin: auto;
 
   text-align: center;
@@ -14,6 +13,7 @@
   padding: 0.3rem 0.4rem;
   background-color: makerDarkBlue;
   text-align: center;
+  width: 100%;
 }
 
 .title {

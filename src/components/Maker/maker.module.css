@@ -11,6 +11,7 @@
 .content {
   display: flex;
 
+  background-color: makerWhite;
   min-height: 0;
 }
 

@@ -72,7 +72,7 @@ class Maker extends Component {
           <Preview cards={this.state.cards}></Preview>
         </div>
 
-        <Footer></Footer>
+        <Footer loginStatus={this.state.loginStatus}></Footer>
       </section>
     )
   }

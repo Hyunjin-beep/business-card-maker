@@ -2,9 +2,11 @@
 @value makerWhite from '../../common/colors.css';
 @value makerDarkBlue from '../../common/colors.css';
 
+.container {
+  width: 30%;
+}
+
 .login_container {
-  width: 35%;
-  margin: auto;
   text-align: center;
   padding: 0rem 0.5rem 1.2rem 0.5rem;
   display: flex;
