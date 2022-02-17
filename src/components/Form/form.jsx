@@ -19,6 +19,11 @@ class Form extends Component {
     this.props.updateChanges(card)
   }
 
+  handleDelete = event => {
+    event.preventDefault()
+    this.props.onDelete(this.props.card)
+  }
+
   render() {
     const { name, company, theme, title, email, message, fileName, fileURL } =
       this.props.card
@@ -86,7 +91,7 @@ class Form extends Component {
               type="submit"
               value="Delete"
               className={styles.addBtn}
-              onClick={this.handleSave}
+              onClick={this.handleDelete}
             />
           </div>
         </form>

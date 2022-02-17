@@ -14,6 +14,7 @@ class Edit extends Component {
               key={card.id}
               card={card}
               updateChanges={this.props.updateChanges}
+              onDelete={this.props.onDelete}
             ></Form>
           ))}
         <Add addCard={this.props.addCard}></Add>

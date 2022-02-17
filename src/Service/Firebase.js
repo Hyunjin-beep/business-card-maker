@@ -17,27 +17,6 @@ export const auth = getAuth(app)
 export const db = getDatabase(app)
 export const user = auth.currentUser
 
-// const googleProvider = new GoogleAuthProvider()
-// const gitHubProvider = new GithubAuthProvider()
-
-// export const signInWithGoogle = async () => {
-//   try {
-//     const result = await signInWithPopup(auth, googleProvider)
-//     return result
-//   } catch (error) {
-//     return console.log(error)
-//   }
-// }
-
-// export const signInWithGitHub = async () => {
-//   try {
-//     const result = await signInWithPopup(auth, gitHubProvider)
-//     return result
-//   } catch (error) {
-//     return console.log(error)
-//   }
-// }
-
 export const userChecked = () => {
   if (user) {
     return true
@@ -45,13 +24,3 @@ export const userChecked = () => {
     return false
   }
 }
-
-// export const signOutCheck = () => {
-//   signOut(auth)
-//     .then(() => {
-//       console.log('logged out')
-//     })
-//     .catch(error => {
-//       console.log(error)
-//     })
-// }

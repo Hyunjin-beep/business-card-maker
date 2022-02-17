@@ -6,7 +6,7 @@ import styles from './login.module.css'
 
 class Login extends Component {
   state = {
-    uid: '',
+    // uid: '',
     loginStatus: false,
   }
   // useNagivate를 찾아야함
@@ -19,7 +19,7 @@ class Login extends Component {
       // this.retrieveUserData(result.user.uid)
       console.log(result)
       this.setState({ loginStatus: true })
-      this.setState({ uid: result.user.uid })
+      // this.setState({ uid: result.user.uid })
     })
   }
 

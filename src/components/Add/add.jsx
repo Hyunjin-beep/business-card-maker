@@ -55,7 +55,12 @@ class Add extends Component {
             className={styles.input}
             ref={this.company}
           />
-          <select name="Theme" name="theme" className={styles.selector}>
+          <select
+            name="Theme"
+            name="theme"
+            ref={this.theme}
+            className={styles.selector}
+          >
             <option value="Dark">Dark</option>
             <option value="Light">Light</option>
             <option value="Colorful">Colorful</option>

@@ -29,9 +29,9 @@ class AuthService {
     signOut(auth)
   }
 
-  onAuthState() {
+  onAuthState(test) {
     onAuthStateChanged(auth, user => {
-      user && console.log(user)
+      test(user)
     })
   }
 }

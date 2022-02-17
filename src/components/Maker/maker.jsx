@@ -10,34 +10,13 @@ import styles from './maker.module.css'
 class Maker extends Component {
   state = {
     loginStatus: true,
+    userId: '',
     cards: [
       {
         id: '0',
         name: 'Ellie1',
         company: 'Samsung',
         theme: 'dark',
-        title: 'Software Engineer',
-        email: 'ellie@gmail.com',
-        message: 'go for it',
-        fileName: 'ellie',
-        fileURL: null,
-      },
-      {
-        id: '1',
-        name: 'Ellie2',
-        company: 'Samsung',
-        theme: 'light',
-        title: 'Software Engineer',
-        email: 'ellie@gmail.com',
-        message: 'go for it',
-        fileName: 'ellie',
-        fileURL: 'ellie.png',
-      },
-      {
-        id: '2',
-        name: 'Ellie3',
-        company: 'Samsung',
-        theme: 'colorful',
         title: 'Software Engineer',
         email: 'ellie@gmail.com',
         message: 'go for it',
@@ -52,11 +31,27 @@ class Maker extends Component {
       return card.id === item.id ? card : item
     })
     this.setState({ cards: updated })
+    this.props.database.save_card(this.state.userId, card)
   }
 
   addCard = card => {
     const updated = [...this.state.cards, card]
+    console.log(card.id)
     this.setState({ cards: updated })
+    this.props.database.save_card(this.state.userId, card)
+  }
+
+  componentDidMount() {
+    this.props.authService.onAuthState(user => {
+      user && this.setState({ userId: user.uid })
+    })
+  }
+
+  handleDelete = card => {
+    this.setState({
+      cards: this.state.cards.filter(item => item.id !== card.id),
+    })
+    this.props.database.delete_card(this.state.userId, card)
   }
 
   render() {
@@ -68,6 +63,7 @@ class Maker extends Component {
             cards={this.state.cards}
             updateChanges={this.updateChanges}
             addCard={this.addCard}
+            onDelete={this.handleDelete}
           ></Edit>
           <Preview cards={this.state.cards}></Preview>
         </div>

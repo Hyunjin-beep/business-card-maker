@@ -25,7 +25,12 @@ class App extends Component {
             <Route
               path="/maker"
               exact
-              element={<Maker authService={this.props.authService}></Maker>}
+              element={
+                <Maker
+                  authService={this.props.authService}
+                  database={this.props.database}
+                ></Maker>
+              }
             ></Route>
           </Routes>
         </BrowserRouter>
