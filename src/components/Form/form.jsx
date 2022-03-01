@@ -3,8 +3,21 @@ import styles from './form.module.css'
 
 class Form extends Component {
   inputRef = React.createRef()
-  hanldeImg = event => {
-    console.log('sdf')
+
+  state = {
+    file: [],
+  }
+
+  hanldeImg = async event => {
+    const uploaded = await this.props.imageInput.upload(event.target.files[0])
+    this.setState({ file: uploaded })
+
+    const card = {
+      ...this.props.card,
+      fileName: this.state.file.original_filename,
+      fileURL: this.state.file.url,
+    }
+    this.props.updateChanges(card)
   }
 
   onChange = event => {
@@ -23,6 +36,11 @@ class Form extends Component {
   handleDelete = event => {
     event.preventDefault()
     this.props.onDelete(this.props.card)
+  }
+
+  onButtonClicked = event => {
+    event.preventDefault()
+    this.inputRef.current.click()
   }
 
   render() {
@@ -90,6 +108,9 @@ class Form extends Component {
               ref={this.inputRef}
               onChange={this.hanldeImg}
             />
+            <button className={styles.imgLabel} onClick={this.onButtonClicked}>
+              {fileName}
+            </button>
             <input
               type="submit"
               value="Delete"
