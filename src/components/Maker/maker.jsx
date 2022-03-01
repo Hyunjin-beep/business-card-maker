@@ -12,17 +12,17 @@ class Maker extends Component {
     loginStatus: true,
     userId: '',
     cards: [
-      {
-        id: '0',
-        name: 'Ellie1',
-        company: 'Samsung',
-        theme: 'dark',
-        title: 'Software Engineer',
-        email: 'ellie@gmail.com',
-        message: 'go for it',
-        fileName: 'ellie',
-        fileURL: null,
-      },
+      // {
+      //   id: '0',
+      //   name: 'Ellie1',
+      //   company: 'Samsung',
+      //   theme: 'dark',
+      //   title: 'Software Engineer',
+      //   email: 'ellie@gmail.com',
+      //   message: 'go for it',
+      //   fileName: 'ellie',
+      //   fileURL: null,
+      // },
     ],
   }
 
@@ -30,13 +30,14 @@ class Maker extends Component {
     const updated = this.state.cards.map(item => {
       return card.id === item.id ? card : item
     })
+
     this.setState({ cards: updated })
     this.props.database.save_card(this.state.userId, card)
   }
 
   addCard = card => {
     const updated = [...this.state.cards, card]
-    console.log(card.id)
+    console.log(updated)
     this.setState({ cards: updated })
     this.props.database.save_card(this.state.userId, card)
   }
@@ -44,7 +45,21 @@ class Maker extends Component {
   componentDidMount() {
     this.props.authService.onAuthState(user => {
       user && this.setState({ userId: user.uid })
+
+      this.props.database.load_card(this.state.userId, card => {
+        this.handleShow(card)
+      })
     })
+  }
+
+  handleShow = card => {
+    let newA = []
+
+    for (let item in card) {
+      newA.push(card[item])
+    }
+
+    this.setState({ cards: newA })
   }
 
   handleDelete = card => {
