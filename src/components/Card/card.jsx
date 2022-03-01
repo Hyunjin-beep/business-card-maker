@@ -8,7 +8,7 @@ class Card extends Component {
       this.props.card
     return (
       <li className={styles.container}>
-        <img src={logo} alt="" className={styles.img} />
+        <img src={fileURL} alt={fileName} className={styles.img} />
 
         <div className={styles.metadata}>
           <h1 className={styles.name}>{name}</h1>

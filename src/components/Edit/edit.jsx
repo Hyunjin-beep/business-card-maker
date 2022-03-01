@@ -15,9 +15,13 @@ class Edit extends Component {
               card={card}
               updateChanges={this.props.updateChanges}
               onDelete={this.props.onDelete}
+              imageInput={this.props.imageInput}
             ></Form>
           ))}
-        <Add addCard={this.props.addCard}></Add>
+        <Add
+          addCard={this.props.addCard}
+          imageInput={this.props.imageInput}
+        ></Add>
       </div>
     )
   }

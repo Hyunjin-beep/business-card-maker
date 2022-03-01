@@ -2,8 +2,9 @@ import React, { Component } from 'react'
 import styles from './form.module.css'
 
 class Form extends Component {
+  inputRef = React.createRef()
   hanldeImg = event => {
-    // this.props.onImg(event.target.files[0])
+    console.log('sdf')
   }
 
   onChange = event => {
@@ -85,6 +86,8 @@ class Form extends Component {
               type="file"
               className={styles.imgBtn}
               // value={fileName}
+              accept="image/*"
+              ref={this.inputRef}
               onChange={this.hanldeImg}
             />
             <input

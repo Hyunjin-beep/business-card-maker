@@ -9,6 +9,11 @@ class Add extends Component {
   email = React.createRef()
   intro = React.createRef()
   form = React.createRef()
+  inputRef = React.createRef()
+
+  state = {
+    file: [],
+  }
 
   handleSave = event => {
     event.preventDefault()
@@ -18,6 +23,8 @@ class Add extends Component {
     const enteredPosition = this.position.current.value
     const enteredEmail = this.email.current.value
     const enteredIntro = this.intro.current.value
+    const fileName = this.state.file.original_filename
+    const fileURL = this.state.file.url
 
     const card = {
       id: Date.now(),
@@ -27,16 +34,20 @@ class Add extends Component {
       title: enteredPosition,
       email: enteredEmail,
       message: enteredIntro,
-      fileName: 'ellie',
-      fileURL: null,
+      fileName: fileName,
+      fileURL: fileURL,
     }
 
     this.props.addCard(card)
     this.form.current.reset()
   }
 
-  hanldeImg = event => {
-    // this.props.onImg(event.target.files[0])
+  hanldeImg = async event => {
+    console.log(event.target.files[0])
+
+    const uploaded = await this.props.imageInput.upload(event.target.files[0])
+    this.setState({ file: uploaded })
+    console.log(uploaded)
   }
 
   render() {
@@ -90,6 +101,7 @@ class Add extends Component {
           <div className={styles.buttons}>
             <input
               type="file"
+              ref={this.inputRef}
               className={styles.imgBtn}
               onChange={this.hanldeImg}
             />

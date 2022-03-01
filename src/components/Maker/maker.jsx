@@ -37,7 +37,7 @@ class Maker extends Component {
 
   addCard = card => {
     const updated = [...this.state.cards, card]
-    console.log(updated)
+
     this.setState({ cards: updated })
     this.props.database.save_card(this.state.userId, card)
   }
@@ -79,6 +79,7 @@ class Maker extends Component {
             updateChanges={this.updateChanges}
             addCard={this.addCard}
             onDelete={this.handleDelete}
+            imageInput={this.props.imageInput}
           ></Edit>
           <Preview cards={this.state.cards}></Preview>
         </div>

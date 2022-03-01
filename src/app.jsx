@@ -29,6 +29,7 @@ class App extends Component {
                 <Maker
                   authService={this.props.authService}
                   database={this.props.database}
+                  imageInput={this.props.imageInput}
                 ></Maker>
               }
             ></Route>
