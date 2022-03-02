@@ -50,6 +50,11 @@ class Add extends Component {
     console.log(uploaded)
   }
 
+  onButtonClicked = event => {
+    event.preventDefault()
+    this.inputRef.current.click()
+  }
+
   render() {
     return (
       <>
@@ -72,9 +77,9 @@ class Add extends Component {
             ref={this.theme}
             className={styles.selector}
           >
-            <option value="Dark">Dark</option>
-            <option value="Light">Light</option>
-            <option value="Colorful">Colorful</option>
+            <option value="dark">dark</option>
+            <option value="light">light</option>
+            <option value="colorful">colorful</option>
           </select>
 
           <input
@@ -105,6 +110,11 @@ class Add extends Component {
               className={styles.imgBtn}
               onChange={this.hanldeImg}
             />
+            <button className={styles.imgLabel} onClick={this.onButtonClicked}>
+              {this.state.file.original_filename
+                ? this.state.file.original_filename
+                : 'Choose File'}
+            </button>
             <input
               type="submit"
               value="Add"

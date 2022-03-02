@@ -26,7 +26,9 @@ class AuthService {
   }
 
   logOutInAuth() {
-    signOut(auth)
+    signOut(auth).then(() => {
+      console.log('success')
+    })
   }
 
   onAuthState(test) {

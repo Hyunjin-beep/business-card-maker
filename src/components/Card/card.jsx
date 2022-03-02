@@ -1,25 +1,40 @@
-import React, { Component } from 'react'
+import React from 'react'
 import styles from './card.module.css'
 import logo from '../public/logo.png'
 
-class Card extends Component {
-  render() {
-    const { name, company, theme, title, email, message, fileName, fileURL } =
-      this.props.card
-    return (
-      <li className={styles.container}>
-        <img src={fileURL} alt={fileName} className={styles.img} />
+const Card = ({ card }) => {
+  const { name, company, theme, title, email, message, fileName, fileURL } =
+    card
+  console.log(theme)
+  return (
+    <li className={`${styles.container} ${chooseTheme(theme)}`}>
+      <img src={fileURL} alt={fileName} className={styles.img} />
 
-        <div className={styles.metadata}>
-          <h1 className={styles.name}>{name}</h1>
-          <p className={styles.company}>{company}</p>
+      <div className={styles.metadata}>
+        <h1 className={styles.name}>{name}</h1>
+        <p className={styles.company}>{company}</p>
 
-          <p className={styles.title}>{title}</p>
-          <p className={styles.email}>{email}</p>
-          <p className={styles.message}>{message}</p>
-        </div>
-      </li>
-    )
+        <p className={styles.title}>{title}</p>
+        <p className={styles.email}>{email}</p>
+        <p className={styles.message}>{message}</p>
+      </div>
+    </li>
+  )
+}
+
+function chooseTheme(theme) {
+  switch (theme) {
+    case 'dark':
+      return styles.dark
+
+    case 'light':
+      return styles.light
+
+    case 'colorful':
+      return styles.colorful
+
+    default:
+      throw new Error(`Unknown theme : ${theme}`)
   }
 }
 

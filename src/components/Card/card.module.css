@@ -2,7 +2,7 @@
 @value makerBlack from '../../common/colors.css';
 @value makerWhite from '../../common/colors.css';
 @value makerWheat from '../../common/colors.css';
-@value makerShadow from '../../common/colors.css';
+@value makerShadow, makerGrey, makerLightPink, makerColorful from '../../common/colors.css';
 .container {
   display: flex;
   width: 100%;
@@ -54,4 +54,17 @@
   height: 2px;
   background-color: makerWheat;
   transform: translateY(0.5em);
+}
+
+.container.dark {
+  background-color: makerBlack;
+  color: makerWhite;
+}
+
+.container.light {
+  background-color: makerLightPink;
+}
+
+.container.colorful {
+  background: makerColorful;
 }

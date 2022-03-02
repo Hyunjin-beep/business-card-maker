@@ -1,56 +1,51 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Footer from '../Footer/footer'
 import Headers from '../Headers/headers'
 import styles from './login.module.css'
 
-class Login extends Component {
-  state = {
-    // uid: '',
-    loginStatus: false,
-  }
+const Login = ({ authService }) => {
+  const [loginStatus, setLogin] = useState({})
+  const navigate = useNavigate()
+
   // useNagivate를 찾아야함
-  handleLogin = event => {
+  const handleLogin = event => {
     const providerName = event.currentTarget.textContent
 
-    this.props.authService.loginInAuth(providerName).then(result => {
-      // this.setState({ userDetail: result.user })
+    authService
+      .loginInAuth(providerName) //
+      .then(result => {
+        console.log(result)
+        setLogin(true)
+        goToMaker(result)
+      })
+  }
 
-      // this.retrieveUserData(result.user.uid)
-      console.log(result)
-      this.setState({ loginStatus: true })
-      // this.setState({ uid: result.user.uid })
+  const goToMaker = userID => {
+    navigate('/maker')
+  }
+
+  useEffect(() => {
+    authService.onAuthState(user => {
+      user && goToMaker(user)
     })
-  }
+  }, [])
 
-  componentDidMount() {
-    // when user had logged in, go to maker page
-    this.props.authService.onAuthState()
-  }
-
-  goToMaker = userId => {
-    // const navigate = useNavigate()
-    // navigate('/form', { state: { id: userId } })
-    // console.log(this.navigate)
-  }
-
-  render() {
-    return (
-      <section className={styles.container}>
-        <Headers loginStatus={this.state.loginStatus}></Headers>
-        <div className={styles.login_container}>
-          <h2 className={styles.header}>Login</h2>
-          <button className={styles.loginbutton} onClick={this.handleLogin}>
-            Google
-          </button>
-          <button className={styles.loginbutton} onClick={this.handleLogin}>
-            GitHub
-          </button>
-        </div>
-        <Footer loginStatus={this.state.loginStatus}></Footer>
-      </section>
-    )
-  }
+  return (
+    <section className={styles.container}>
+      <Headers loginStatus={loginStatus}></Headers>
+      <div className={styles.login_container}>
+        <h2 className={styles.header}>Login</h2>
+        <button className={styles.loginbutton} onClick={handleLogin}>
+          Google
+        </button>
+        <button className={styles.loginbutton} onClick={handleLogin}>
+          GitHub
+        </button>
+      </div>
+      <Footer loginStatus={loginStatus}></Footer>
+    </section>
+  )
 }
 
 export default Login

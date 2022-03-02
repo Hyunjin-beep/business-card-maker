@@ -1,7 +1,7 @@
 @value makerDarkBlue from '../../common/colors.css';
 @value makerBlack from '../../common/colors.css';
 @value makerWhite from '../../common/colors.css';
-@value makerLightGrey from '../../common/colors.css';
+@value makerLightGrey,makerGrey from '../../common/colors.css';
 
 .container {
   display: flex;
@@ -24,13 +24,20 @@
   flex: 1 1 30%;
 }
 
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 .imgBtn {
   padding: 0;
   display: none;
 }
 
-.imgLabel {
-  width: 100%;
+.imgLabel,
+.addBtn {
+  width: 50%;
   padding: 0.5rem 0;
 
   font-weight: bold;
@@ -38,6 +45,13 @@
   border: 0;
   outline: 0;
   font-size: 0.8rem;
+  border: 1px solid makerBlack;
+}
+
+.imgLabel:hover,
+.addBtn:hover {
+  pointer: cursor;
+  background-color: makerGrey;
 }
 
 .textarea {

@@ -70,9 +70,9 @@ class Form extends Component {
             value={theme}
             onChange={this.onChange}
           >
-            <option value="Dark">Dark</option>
-            <option value="Light">Light</option>
-            <option value="Colorful">Colorful</option>
+            <option value="dark">dark</option>
+            <option value="light">light</option>
+            <option value="colorful">colorful</option>
           </select>
 
           <input

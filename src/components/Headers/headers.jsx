@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import styles from './header.module.css'
 import logo from '../public/logo.png'
 
-class Headers extends Component {
+class Headers extends PureComponent {
   handleSignOut = () => {
-    this.props.onSignOut()
+    this.props.authService.logOutInAuth()
   }
 
   render() {

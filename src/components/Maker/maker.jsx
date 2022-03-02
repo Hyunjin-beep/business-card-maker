@@ -72,7 +72,10 @@ class Maker extends Component {
   render() {
     return (
       <section className={styles.container}>
-        <Headers loginStatus={this.state.loginStatus}></Headers>
+        <Headers
+          loginStatus={this.state.loginStatus}
+          authService={this.props.authService}
+        ></Headers>
         <div className={styles.content}>
           <Edit
             cards={this.state.cards}
