@@ -42,6 +42,13 @@ class Maker extends Component {
     this.props.database.save_card(this.state.userId, card)
   }
 
+  handleDelete = card => {
+    this.setState({
+      cards: this.state.cards.filter(item => item.id !== card.id),
+    })
+    this.props.database.delete_card(this.state.userId, card)
+  }
+
   componentDidMount() {
     this.props.authService.onAuthState(user => {
       user && this.setState({ userId: user.uid })
@@ -53,20 +60,13 @@ class Maker extends Component {
   }
 
   handleShow = card => {
-    let newA = []
+    let newCard = []
 
     for (let item in card) {
-      newA.push(card[item])
+      newCard.push(card[item])
     }
 
-    this.setState({ cards: newA })
-  }
-
-  handleDelete = card => {
-    this.setState({
-      cards: this.state.cards.filter(item => item.id !== card.id),
-    })
-    this.props.database.delete_card(this.state.userId, card)
+    this.setState({ cards: newCard })
   }
 
   render() {

@@ -44,7 +44,7 @@ class Form extends Component {
   }
 
   render() {
-    const { name, company, theme, title, email, message, fileName, fileURL } =
+    const { name, company, theme, title, email, message, fileName } =
       this.props.card
     return (
       <>

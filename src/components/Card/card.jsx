@@ -5,7 +5,7 @@ import logo from '../public/logo.png'
 const Card = ({ card }) => {
   const { name, company, theme, title, email, message, fileName, fileURL } =
     card
-  console.log(theme)
+
   return (
     <li className={`${styles.container} ${chooseTheme(theme)}`}>
       <img src={fileURL} alt={fileName} className={styles.img} />

@@ -15,7 +15,6 @@ const Login = ({ authService }) => {
     authService
       .loginInAuth(providerName) //
       .then(result => {
-        console.log(result)
         setLogin(true)
         goToMaker(result)
       })
@@ -25,6 +24,7 @@ const Login = ({ authService }) => {
     navigate('/maker')
   }
 
+  // user가 바뀌었다면
   useEffect(() => {
     authService.onAuthState(user => {
       user && goToMaker(user)
