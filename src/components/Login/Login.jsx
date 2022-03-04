@@ -20,7 +20,7 @@ const Login = ({ authService }) => {
       })
   }
 
-  const goToMaker = userID => {
+  const goToMaker = () => {
     navigate('/maker')
   }
 

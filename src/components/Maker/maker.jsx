@@ -69,12 +69,17 @@ class Maker extends Component {
     this.setState({ cards: newCard })
   }
 
+  changeLoginStatus = status => {
+    this.setState({ loginStatus: status })
+  }
+
   render() {
     return (
       <section className={styles.container}>
         <Headers
           loginStatus={this.state.loginStatus}
           authService={this.props.authService}
+          changeLoginStatus={this.changeLoginStatus}
         ></Headers>
         <div className={styles.content}>
           <Edit

@@ -64,7 +64,7 @@ class Form extends Component {
             onChange={this.onChange}
           />
           <select
-            name="Theme"
+            // name="Theme"
             name="theme"
             className={styles.selector}
             value={theme}

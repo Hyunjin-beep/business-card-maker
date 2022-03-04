@@ -1,39 +1,40 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import styles from './header.module.css'
 import logo from '../public/logo.png'
+import { useNavigate } from 'react-router-dom'
 
-class Headers extends PureComponent {
-  handleSignOut = () => {
-    this.props.authService.logOutInAuth()
+const Headers = props => {
+  const navigate = useNavigate()
+
+  const handleSignOut = () => {
+    props.authService.logOutInAuth()
+    props.changeLoginStatus(false)
+    navigate('/')
   }
 
-  render() {
-    return (
-      <div
-        className={
-          this.props.loginStatus === true
-            ? styles.container_loggedin
-            : styles.container
-        }
-      >
-        <div className={styles.logo}>
-          <img src={logo} alt="" className={styles.img} />
-          <h2 className={styles.title}>Business Card Maker</h2>
-        </div>
-
-        <button
-          className={
-            this.props.loginStatus === true
-              ? styles.logoutButton
-              : styles.hiddenButton
-          }
-          onClick={this.handleSignOut}
-        >
-          Log Out
-        </button>
+  return (
+    <div
+      className={
+        props.loginStatus === true
+          ? styles.container_loggedin
+          : styles.container
+      }
+    >
+      <div className={styles.logo}>
+        <img src={logo} alt="" className={styles.img} />
+        <h2 className={styles.title}>Business Card Maker</h2>
       </div>
-    )
-  }
+
+      <button
+        className={
+          props.loginStatus === true ? styles.logoutButton : styles.hiddenButton
+        }
+        onClick={handleSignOut}
+      >
+        Log Out
+      </button>
+    </div>
+  )
 }
 
 export default Headers
