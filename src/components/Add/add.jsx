@@ -43,11 +43,8 @@ class Add extends Component {
   }
 
   hanldeImg = async event => {
-    console.log(event.target.files[0])
-
     const uploaded = await this.props.imageInput.upload(event.target.files[0])
     this.setState({ file: uploaded })
-    console.log(uploaded)
   }
 
   onButtonClicked = event => {
@@ -71,12 +68,7 @@ class Add extends Component {
             className={styles.input}
             ref={this.company}
           />
-          <select
-            name="Theme"
-            name="theme"
-            ref={this.theme}
-            className={styles.selector}
-          >
+          <select name="Theme" ref={this.theme} className={styles.selector}>
             <option value="dark">dark</option>
             <option value="light">light</option>
             <option value="colorful">colorful</option>
