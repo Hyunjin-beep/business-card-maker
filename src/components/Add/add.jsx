@@ -40,6 +40,7 @@ class Add extends Component {
 
     this.props.addCard(card)
     this.form.current.reset()
+    this.setState({ file: [] })
   }
 
   hanldeImg = async event => {

@@ -5,12 +5,12 @@ import Maker from './components/Maker/maker'
 import styles from './app.module.css'
 
 class App extends Component {
-  state = {
-    LogInStatus: false,
-    img: '',
-    userDetail: [],
-    userData: [],
-  }
+  // state = {
+  //   LogInStatus: false,
+  //   img: '',
+  //   userDetail: [],
+  //   userData: [],
+  // }
 
   render() {
     return (
